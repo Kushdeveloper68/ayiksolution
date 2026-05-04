@@ -108,22 +108,22 @@ const ContactStrip: React.FC = () => {
   });
 
   return (
-    <section id="contact" className="py-24" style={{ background: 'var(--deep)' }}>
-      <div className="px-6 sm:px-12 lg:px-20">
+    <section id="contact" className="py-20 sm:py-24" style={{ background: 'var(--deep)' }}>
+      <div className="px-4 sm:px-12 lg:px-20">
         <div
-          className="rounded-3xl overflow-hidden reveal"
+          className="rounded-2xl sm:rounded-3xl overflow-hidden reveal"
           style={{
             background: 'linear-gradient(135deg, rgba(37,99,255,0.1) 0%, rgba(0,212,255,0.04) 50%, rgba(255,107,0,0.04) 100%)',
             border: '1px solid rgba(37,99,255,0.28)',
           }}
         >
           {/* Top content */}
-          <div className="p-8 sm:p-12 lg:p-16">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+          <div className="p-6 sm:p-12 lg:p-16">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-8">
               {/* Left text */}
               <div className="flex-1">
                 <span
-                  className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.15em] uppercase mb-4"
+                  className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold tracking-[0.15em] uppercase mb-3 sm:mb-4"
                   style={{ color: 'var(--cyan)' }}
                 >
                   <span
@@ -132,22 +132,22 @@ const ContactStrip: React.FC = () => {
                   />
                   Free Consultation Available
                 </span>
-                <h2 className="mb-4" style={{ letterSpacing: '-1.5px' }}>
+                <h2 className="mb-3 sm:mb-4 text-[clamp(30px,8vw,56px)] sm:text-[clamp(32px,5vw,56px)]" style={{ letterSpacing: '-1.5px' }}>
                   Ready to grow<br />
                   <span style={{ color: 'var(--cyan)' }}>your Idea?</span>
                 </h2>
-                <p className="text-[16px] leading-relaxed max-w-md" style={{ color: 'var(--muted)', fontWeight: 300 }}>
+                <p className="text-[14px] sm:text-[16px] leading-relaxed max-w-md" style={{ color: 'var(--muted)', fontWeight: 300 }}>
                   Tell us about your idea and we'll reach out within <strong style={{ color: 'var(--text)', fontWeight: 600 }}>24 hours</strong> with a personalised growth plan — completely free.
                 </p>
 
                 {/* Trust signals */}
-                <div className="flex flex-wrap gap-5 mt-7">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-5 mt-6 sm:mt-7">
                   {[
                     { icon: '✓', label: 'No contracts or lock-ins' },
                     { icon: '✓', label: 'Results in 30 days or more' },
                     { icon: '✓', label: 'Free 20-min strategy call' },
                   ].map(({ icon, label }) => (
-                    <div key={label} className="flex items-center gap-2 text-[13px]" style={{ color: 'var(--muted)' }}>
+                    <div key={label} className="flex items-center gap-2 text-[12px] sm:text-[13px]" style={{ color: 'var(--muted)' }}>
                       <span className="font-bold" style={{ color: '#00e599' }}>{icon}</span>
                       {label}
                     </div>
@@ -156,11 +156,11 @@ const ContactStrip: React.FC = () => {
               </div>
 
               {/* Right CTA or success */}
-              <div className="flex flex-col items-start lg:items-end gap-4">
+              <div className="flex flex-col items-stretch lg:items-end gap-3 sm:gap-4 w-full lg:w-auto">
                 {!submitted ? (
                   <button
                     onClick={() => setFormOpen(prev => !prev)}
-                    className="group flex items-center gap-3 px-8 py-4 rounded-full text-[15px] font-semibold text-white transition-all duration-300 cursor-none"
+                    className="group flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-[14px] sm:text-[15px] font-semibold text-white transition-all duration-300 cursor-none w-full lg:w-auto"
                     style={{
                       background: formOpen
                         ? 'transparent'
@@ -191,7 +191,7 @@ const ContactStrip: React.FC = () => {
                   </button>
                 ) : null}
 
-                <p className="text-[12px]" style={{ color: 'var(--muted)' }}>
+                <p className="text-[11px] sm:text-[12px] text-center lg:text-right" style={{ color: 'var(--muted)' }}>
                   🔒 Your details stay private. No spam, ever.
                 </p>
               </div>
@@ -208,27 +208,27 @@ const ContactStrip: React.FC = () => {
           >
             <div ref={formRef}>
               <div
-                className="px-8 sm:px-12 lg:px-16 pb-12 pt-2"
+                className="px-5 sm:px-12 lg:px-16 pb-8 sm:pb-12 pt-2"
                 style={{ borderTop: '1px solid rgba(37,99,255,0.2)' }}
               >
                 {submitted ? (
                   // Success state
-                  <div className="py-12 flex flex-col items-center text-center gap-4">
+                  <div className="py-10 sm:py-12 flex flex-col items-center text-center gap-4">
                     <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center text-3xl"
+                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-2xl sm:text-3xl"
                       style={{ background: 'rgba(0,229,153,0.15)' }}
                     >
                       ✓
                     </div>
-                    <h3 className="text-[24px] font-bold" style={{ fontFamily: 'var(--font-head)', color: '#00e599' }}>
+                    <h3 className="text-[20px] sm:text-[24px] font-bold" style={{ fontFamily: 'var(--font-head)', color: '#00e599' }}>
                       Message received!
                     </h3>
-                    <p className="text-[15px] max-w-sm" style={{ color: 'var(--muted)' }}>
+                    <p className="text-[14px] sm:text-[15px] max-w-sm" style={{ color: 'var(--muted)' }}>
                       We'll review your details and reach out within 24 hours with a personalised plan for your clinic.
                     </p>
                     <button
                       onClick={() => { setSubmitted(false); setFormOpen(false); }}
-                      className="mt-4 px-6 py-2.5 rounded-full text-[13px] font-semibold cursor-none"
+                      className="mt-4 px-6 py-2.5 rounded-full text-[13px] font-semibold cursor-none w-full sm:w-auto"
                       style={{ background: 'var(--card)', color: 'var(--text)', border: '1px solid var(--border)' }}
                     >
                       Close
@@ -236,8 +236,8 @@ const ContactStrip: React.FC = () => {
                   </div>
                 ) : (
                   // Form
-                  <div className="pt-8">
-                    <p className="text-[13px] font-bold tracking-[0.12em] uppercase mb-7" style={{ color: 'var(--cyan)' }}>
+                  <div className="pt-6 sm:pt-8">
+                    <p className="text-[12px] sm:text-[13px] font-bold tracking-[0.12em] uppercase mb-5 sm:mb-7" style={{ color: 'var(--cyan)' }}>
                       Tell us about your clinic
                     </p>
 
@@ -344,7 +344,7 @@ const ContactStrip: React.FC = () => {
                     </div>
 
                     {/* Message */}
-                    <div className="flex flex-col gap-1.5 mb-7">
+                    <div className="flex flex-col gap-1.5 mb-6 sm:mb-7">
                       <label className="text-[12px] font-semibold tracking-wide" style={{ color: 'var(--muted)' }}>
                         Tell us about your goals{' '}
                         <span style={{ color: '#3a3a58' }}>(optional)</span>
@@ -366,11 +366,11 @@ const ContactStrip: React.FC = () => {
                     </div>
 
                     {/* Submit */}
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
                       <button
                         onClick={handleSubmit}
                         disabled={loading}
-                        className="flex items-center gap-3 px-8 py-4 rounded-full text-[14px] font-semibold text-white transition-all duration-200 cursor-none"
+                        className="flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-[13px] sm:text-[14px] font-semibold text-white transition-all duration-200 cursor-none w-full sm:min-w-50"
                         style={{
                           background: loading
                             ? 'rgba(37,99,255,0.5)'
@@ -394,7 +394,7 @@ const ContactStrip: React.FC = () => {
                           <>Send Message →</>
                         )}
                       </button>
-                      <p className="text-[12px]" style={{ color: 'var(--muted)' }}>
+                        <p className="text-[11px] sm:text-[12px] text-center sm:text-left" style={{ color: 'var(--muted)' }}>
                         We respond within <span style={{ color: 'var(--text)' }}>24 hours</span>
                       </p>
                     </div>

@@ -393,7 +393,7 @@ const Work: React.FC = () => {
   if (isMobile) {
     return (
       <section
-        id="work"
+        id="works"
         style={{ background: 'var(--black)', paddingTop: '5rem', paddingBottom: '5rem' }}
       >
         <div
@@ -480,7 +480,7 @@ const Work: React.FC = () => {
   return (
     <div
       ref={outerRef}
-      id="work"
+      id="works"
       style={{ height: outerHeight > 0 ? `${outerHeight}px` : '100vh', position: 'relative' }}
     >
       <div

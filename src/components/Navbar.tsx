@@ -49,7 +49,12 @@ const Navbar: React.FC = () => {
 };
 
   const menuItems = ['Home', 'About', 'Works', 'Services', 'Contact'];
-  const socials   = ['X/Twitter', 'LinkedIn', 'Instagram', 'Facebook'];
+  const socials = [
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ramkrishna-giri' },
+    { label: 'Instagram', href: 'https://www.instagram.com/ayiksolution' },
+    { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61568483424974' },
+    { label: 'WhatsApp', href: 'https://wa.me/918768119195' },
+  ];
 
   return (
     <>
@@ -237,13 +242,16 @@ const Navbar: React.FC = () => {
                   <div className="flex flex-wrap gap-x-6 gap-y-3 sm:gap-x-8">
                     {socials.map((social) => (
                       <a
-                        key={social}
-                        href="#"
+                        key={social.label}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Open ${social.label}`}
                         className="group flex items-center gap-1.5 text-[20px] font-semibold
                                    tracking-wide text-[#8888aa] hover:text-[#00d4ff]
                                    transition-colors duration-300"
                       >
-                        {social}
+                        {social.label}
                         <span className="text-[10px] group-hover:translate-x-0.5
                                          group-hover:-translate-y-0.5 transition-transform duration-300">
                           ↗

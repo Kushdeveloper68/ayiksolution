@@ -49,7 +49,7 @@ const DESKTOP_MEMBERS: TeamMember[] = [
 const MOBILE_MEMBERS: TeamMember[] = [
   {
     id: "mc0",
-    name: "Krishna",
+    name: "RamKrishna",
     role: "Founder & CEO",
     img: krishnaImg,
     link: "https://in.linkedin.com/in/ramkrishna-giri",

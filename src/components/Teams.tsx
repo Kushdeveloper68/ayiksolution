@@ -37,13 +37,6 @@ const DESKTOP_MEMBERS: TeamMember[] = [
     img: vishanImg,
     link: "https://vishandeveloper.me/",
   },
-  {
-    id: "dc4",
-    name: "Jagriti",
-    role: "Business Development Executive",
-    img: jagritiImg,
-    link: "",
-  },
 ];
 
 const MOBILE_MEMBERS: TeamMember[] = [
@@ -74,13 +67,6 @@ const MOBILE_MEMBERS: TeamMember[] = [
     role: "Social Media & Marketing Manager",
     img: vishanImg,
     link: "https://vishandeveloper.me/",
-  },
-  {
-    id: "mc4",
-    name: "Jagriti",
-    role: "Business Development Executive",
-    img: jagritiImg,
-    link: "",
   },
 ];
 

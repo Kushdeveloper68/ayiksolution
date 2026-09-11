@@ -30,13 +30,6 @@ const DESKTOP_MEMBERS: TeamMember[] = [
     img: satyabrataImg,
     link: "https://in.linkedin.com/in/satyabrata-pradhan-ba0a51294",
   },
-  {
-    id: "dc3",
-    name: "Vishan",
-    role: "Social Media & Marketing Manager",
-    img: vishanImg,
-    link: "https://vishandeveloper.me/",
-  },
 ];
 
 const MOBILE_MEMBERS: TeamMember[] = [
@@ -61,13 +54,13 @@ const MOBILE_MEMBERS: TeamMember[] = [
     img: satyabrataImg,
     link: "https://in.linkedin.com/in/satyabrata-pradhan-ba0a51294",
   },
-  {
-    id: "mc3",
-    name: "Vishan",
-    role: "Social Media & Marketing Manager",
-    img: vishanImg,
-    link: "https://vishandeveloper.me/",
-  },
+  // {
+  //   id: "mc3",
+  //   name: "Rohit Kumar",
+  //   role: "Social Media & Marketing Manager",
+  //   img: "",
+  //   link: "#",
+  // },
 ];
 
 const FALLBACK_IMG =

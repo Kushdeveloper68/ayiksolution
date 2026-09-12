@@ -30,6 +30,13 @@ const DESKTOP_MEMBERS: TeamMember[] = [
     img: satyabrataImg,
     link: "https://in.linkedin.com/in/satyabrata-pradhan-ba0a51294",
   },
+  {
+    id: "mc3",
+    name: "Rohit Kumar",
+    role: "Business development representative (BDR)",
+    img: rohitImg,
+    link: "https://github.com/Tihor36",
+  },
 ];
 
 const MOBILE_MEMBERS: TeamMember[] = [

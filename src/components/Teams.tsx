@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { kushImg, krishnaImg, satyabrataImg, vishanImg, jagritiImg } from "../assets/"
+import { kushImg, krishnaImg, satyabrataImg, rohitImg } from "../assets/"
 type TeamMember = {
   id: string;
   name: string;
@@ -54,13 +54,13 @@ const MOBILE_MEMBERS: TeamMember[] = [
     img: satyabrataImg,
     link: "https://in.linkedin.com/in/satyabrata-pradhan-ba0a51294",
   },
-  // {
-  //   id: "mc3",
-  //   name: "Rohit Kumar",
-  //   role: "Social Media & Marketing Manager",
-  //   img: "",
-  //   link: "#",
-  // },
+   {
+    id: "mc3",
+    name: "Rohit Kumar",
+    role: "Business development representative (BDR)",
+    img: rohitImg,
+    link: "https://github.com/Tihor36",
+  },
 ];
 
 const FALLBACK_IMG =

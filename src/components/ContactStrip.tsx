@@ -4,8 +4,10 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
-  clinicName: string;
+  companyName: string;
+  niche: string;
   service: string;
+  budget: string;
   message: string;
 }
 
@@ -13,8 +15,10 @@ const initialForm: FormData = {
   name: '',
   email: '',
   phone: '',
-  clinicName: '',
+  companyName: '',
+  niche: '',
   service: '',
+  budget: '',
   message: '',
 };
 
@@ -27,6 +31,13 @@ const services = [
   'Analytics & Growth Consulting',
   'Full Growth Package',
   'Not sure — need guidance',
+];
+
+const budgetRanges = [
+  '₹10,000 – ₹20,000',
+  '₹30,000 – ₹40,000',
+  '₹40,000 – ₹50,000',
+  '₹50,000+',
 ];
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mdaywykl';
@@ -47,13 +58,27 @@ const ContactStrip: React.FC = () => {
     }
   }, [formOpen, submitted]);
 
+  // Auto-open the form when arriving here via a "#contact" link (e.g. the
+  // "Let's connect" CTA on the pricing section) instead of just scrolling to it.
+  useEffect(() => {
+    const openIfLinkedHere = () => {
+      if (window.location.hash === '#contact') setFormOpen(true);
+    };
+    openIfLinkedHere();
+    window.addEventListener('hashchange', openIfLinkedHere);
+    return () => window.removeEventListener('hashchange', openIfLinkedHere);
+  }, []);
+
   const validate = (): boolean => {
     const e: Partial<FormData> = {};
     if (!formData.name.trim()) e.name = 'Name is required';
     if (!formData.email.trim() || !formData.email.includes('@')) e.email = 'Valid email required';
     if (!formData.phone.trim() || formData.phone.length < 7) e.phone = 'Valid phone required';
-    if (!formData.clinicName.trim()) e.clinicName = 'Clinic name is required';
+    if (!formData.companyName.trim()) e.companyName = 'Company name is required';
+    if (!formData.niche.trim()) e.niche = 'Niche / industry is required';
     if (!formData.service) e.service = 'Please select a service';
+    if (!formData.budget) e.budget = 'Please select an estimated budget';
+    if (!formData.message.trim()) e.message = 'Please share a few project details';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -238,10 +263,10 @@ const ContactStrip: React.FC = () => {
                   // Form
                   <div className="pt-6 sm:pt-8">
                     <p className="text-[12px] sm:text-[13px] font-bold tracking-[0.12em] uppercase mb-5 sm:mb-7" style={{ color: 'var(--cyan)' }}>
-                      Tell us about your clinic
+                      Tell us about your project
                     </p>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                       {/* Name */}
                       <div className="flex flex-col gap-1.5">
                         <label className="text-[12px] font-semibold tracking-wide" style={{ color: 'var(--muted)' }}>
@@ -295,63 +320,112 @@ const ContactStrip: React.FC = () => {
                         />
                         {errors.phone && <span className="text-[11px]" style={{ color: '#ef4444' }}>{errors.phone}</span>}
                       </div>
+                    </div>
 
-                      {/* Clinic Name */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                      {/* Company Name */}
                       <div className="flex flex-col gap-1.5">
                         <label className="text-[12px] font-semibold tracking-wide" style={{ color: 'var(--muted)' }}>
-                          Business Name / Niche *
+                          Company Name *
                         </label>
                         <input
                           type="text"
-                          name="clinicName"
-                          placeholder="eg. E-commerce"
-                          value={formData.clinicName}
+                          name="companyName"
+                          placeholder="eg. Rane Dental Clinic"
+                          value={formData.companyName}
                           onChange={handleChange}
-                          style={inputStyle('clinicName')}
+                          style={inputStyle('companyName')}
                           onFocus={e => (e.currentTarget.style.borderColor = 'var(--blue)')}
-                          onBlur={e => (e.currentTarget.style.borderColor = errors.clinicName ? '#ef4444' : 'var(--border)')}
+                          onBlur={e => (e.currentTarget.style.borderColor = errors.companyName ? '#ef4444' : 'var(--border)')}
                         />
-                        {errors.clinicName && <span className="text-[11px]" style={{ color: '#ef4444' }}>{errors.clinicName}</span>}
+                        {errors.companyName && <span className="text-[11px]" style={{ color: '#ef4444' }}>{errors.companyName}</span>}
+                      </div>
+
+                      {/* Niche */}
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-[12px] font-semibold tracking-wide" style={{ color: 'var(--muted)' }}>
+                          Niche *
+                        </label>
+                        <input
+                          type="text"
+                          name="niche"
+                          placeholder="eg. Dental Clinic / E-commerce"
+                          value={formData.niche}
+                          onChange={handleChange}
+                          style={inputStyle('niche')}
+                          onFocus={e => (e.currentTarget.style.borderColor = 'var(--blue)')}
+                          onBlur={e => (e.currentTarget.style.borderColor = errors.niche ? '#ef4444' : 'var(--border)')}
+                        />
+                        {errors.niche && <span className="text-[11px]" style={{ color: '#ef4444' }}>{errors.niche}</span>}
                       </div>
                     </div>
 
-                    {/* Service dropdown */}
-                    <div className="flex flex-col gap-1.5 mb-4">
-                      <label className="text-[12px] font-semibold tracking-wide" style={{ color: 'var(--muted)' }}>
-                        Which service are you interested in? *
-                      </label>
-                      <select
-                        name="service"
-                        value={formData.service}
-                        onChange={handleChange}
-                        style={{
-                          ...inputStyle('service'),
-                          cursor: 'none',
-                          appearance: 'none',
-                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b8a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundPosition: 'right 16px center',
-                        }}
-                        onFocus={e => (e.currentTarget.style.borderColor = 'var(--blue)')}
-                        onBlur={e => (e.currentTarget.style.borderColor = errors.service ? '#ef4444' : 'var(--border)')}
-                      >
-                        <option value="" style={{ background: '#090912' }}>Select a service...</option>
-                        {services.map(s => (
-                          <option key={s} value={s} style={{ background: '#090912' }}>{s}</option>
-                        ))}
-                      </select>
-                      {errors.service && <span className="text-[11px]" style={{ color: '#ef4444' }}>{errors.service}</span>}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                      {/* Service dropdown */}
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-[12px] font-semibold tracking-wide" style={{ color: 'var(--muted)' }}>
+                          Which service are you interested in? *
+                        </label>
+                        <select
+                          name="service"
+                          value={formData.service}
+                          onChange={handleChange}
+                          style={{
+                            ...inputStyle('service'),
+                            cursor: 'none',
+                            appearance: 'none',
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b8a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'right 16px center',
+                          }}
+                          onFocus={e => (e.currentTarget.style.borderColor = 'var(--blue)')}
+                          onBlur={e => (e.currentTarget.style.borderColor = errors.service ? '#ef4444' : 'var(--border)')}
+                        >
+                          <option value="" style={{ background: '#090912' }}>Select a service...</option>
+                          {services.map(s => (
+                            <option key={s} value={s} style={{ background: '#090912' }}>{s}</option>
+                          ))}
+                        </select>
+                        {errors.service && <span className="text-[11px]" style={{ color: '#ef4444' }}>{errors.service}</span>}
+                      </div>
+
+                      {/* Budget dropdown */}
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-[12px] font-semibold tracking-wide" style={{ color: 'var(--muted)' }}>
+                          Estimated Budget *
+                        </label>
+                        <select
+                          name="budget"
+                          value={formData.budget}
+                          onChange={handleChange}
+                          style={{
+                            ...inputStyle('budget'),
+                            cursor: 'none',
+                            appearance: 'none',
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b8a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'right 16px center',
+                          }}
+                          onFocus={e => (e.currentTarget.style.borderColor = 'var(--blue)')}
+                          onBlur={e => (e.currentTarget.style.borderColor = errors.budget ? '#ef4444' : 'var(--border)')}
+                        >
+                          <option value="" style={{ background: '#090912' }}>Select a range...</option>
+                          {budgetRanges.map(b => (
+                            <option key={b} value={b} style={{ background: '#090912' }}>{b}</option>
+                          ))}
+                        </select>
+                        {errors.budget && <span className="text-[11px]" style={{ color: '#ef4444' }}>{errors.budget}</span>}
+                      </div>
                     </div>
 
                     {/* Message */}
                     <div className="flex flex-col gap-1.5 mb-6 sm:mb-7">
                       <label className="text-[12px] font-semibold tracking-wide" style={{ color: 'var(--muted)' }}>
-                        Tell us about your goals{' '}
-                        <span style={{ color: '#3a3a58' }}>(optional)</span>
+                        Project Details *
                       </label>
                       <textarea
                         name="message"
-                        placeholder="We're a Foot ware shop in Kolkata looking to increase appointments through our website and WhatsApp..."
+                        placeholder="Tell us what you're building — goals, timeline, and anything else that'll help us understand your project..."
                         value={formData.message}
                         onChange={handleChange}
                         rows={4}
@@ -361,8 +435,9 @@ const ContactStrip: React.FC = () => {
                           minHeight: '100px',
                         }}
                         onFocus={e => (e.currentTarget.style.borderColor = 'var(--blue)')}
-                        onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
+                        onBlur={e => (e.currentTarget.style.borderColor = errors.message ? '#ef4444' : 'var(--border)')}
                       />
+                      {errors.message && <span className="text-[11px]" style={{ color: '#ef4444' }}>{errors.message}</span>}
                     </div>
 
                     {/* Submit */}

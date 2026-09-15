@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
           <h4>Contact</h4>
           <ul className="footer-links">
             <li><a href="#">📍 Kolkata, West-Bengal / Kutch, Gujarat</a></li>
-            <li><a href="#">📧 info@ayiksolution.com</a></li>
+            <li><a href="mailto:ayiksolution.business@gmail.com">📧 ayiksolution.business@gmail.com</a></li>
             <li><a href="https://wa.me/918768119195">💬 WhatsApp Us</a></li>
             <li><a href="#">⏰ Mon–Sat, 9AM–8PM</a></li>
           </ul>

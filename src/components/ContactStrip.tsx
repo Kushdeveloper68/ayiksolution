@@ -23,13 +23,14 @@ const initialForm: FormData = {
 };
 
 const services = [
-  'Clinic Website Design',
-  'AI Lead & Booking Automation',
-  'Social Media & Content AI',
+  'Website Design',
+  'Website Development',
+  'Logo Design',
+  "AI Automation",
+  'Social Media & Content',
   'Paid Ads & Lead Generation',
   'Reputation & Review Growth',
   'Analytics & Growth Consulting',
-  'Full Growth Package',
   'Not sure — need guidance',
 ];
 

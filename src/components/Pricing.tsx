@@ -12,8 +12,8 @@ const steps = [
   },
   {
     num: '02',
-    title: 'Get a fixed quote',
-    desc: 'We scope it properly and reply within 24 hours — one clear number, no hidden costs.',
+    title: 'Get pricing that fits',
+    desc: 'A price built around your project and budget, always open to talk it through.',
   },
   {
     num: '03',
